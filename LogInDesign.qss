@@ -1,0 +1,12 @@
+QWidget {
+	background-image: url(LogInBackground.jpg);
+	background-position: center; 
+}
+QLineEdit {	   
+	color: white;
+	background-color: transparent;
+}
+QPushButton {
+	background-color: #cc0000;
+	color: white;
+}
