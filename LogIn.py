@@ -7,12 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from Registration import Ui_Registration
-
-class ClickableLineEdit(QtWidgets.QLineEdit):
-    clicked = QtCore.pyqtSignal() 
-    def mousePressEvent(self, event):
-        if event.button() == QtCore.Qt.LeftButton: self.clicked.emit()
+from Registration import Ui_Registration, ClickableLineEdit
 
 class Ui_LogIn(object):
     def setupUi(self, LogIn):
@@ -109,10 +104,10 @@ class Ui_LogIn(object):
         mess.exec_()
         
     def createAccount(self):
-        self.app = QtWidgets.QApplication(sys.argv)
         self.Registration = QtWidgets.QWidget()
-        ui = Ui_Registration()
-        ui.setupUi(self.Registration)
+        self.app = QtWidgets.QApplication(sys.argv)
+        self.ui = Ui_Registration()
+        self.ui.setupUi(self.Registration)
         self.Registration.show()
         
     def removeUsername(self):
