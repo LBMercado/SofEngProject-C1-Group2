@@ -14,9 +14,11 @@ class Ui_LogIn(object):
         LogIn.setObjectName("LogIn")
         LogIn.resize(630, 507)
         LogIn.setFixedSize(630, 507)
+#        LogIn.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.pushButtonLogin = QtWidgets.QPushButton(LogIn)
         self.pushButtonLogin.setGeometry(QtCore.QRect(320, 340, 290, 51))
         self.pushButtonLogin.setObjectName("pushButtonLogin")
+        self.pushButtonLogin.setAutoDefault(True)
         self.lineEditUsername = ClickableLineEdit(LogIn)
         self.lineEditUsername.setGeometry(QtCore.QRect(320, 220, 290, 31))
         font = QtGui.QFont()
@@ -35,8 +37,17 @@ class Ui_LogIn(object):
         self.pushButtonCreateAccount = QtWidgets.QPushButton(LogIn)
         self.pushButtonCreateAccount.setGeometry(QtCore.QRect(320, 402, 290, 31))
         self.pushButtonCreateAccount.setObjectName("pushButtonCreateAccount")
+        self.pushButtonCreateAccount.setAutoDefault(True)
         font.setPointSize(15)
         self.pushButtonLogin.setFont(font)
+        self.labelErrorIcon = QtWidgets.QLabel(LogIn)
+        self.labelErrorIcon.setGeometry(320, 298, 25, 25)
+        self.labelErrorIcon.setObjectName("labelErrorIcon")
+        self.labelError = QtWidgets.QLabel(LogIn)
+        self.labelError.setGeometry(355, 295, 200, 30)
+        self.labelError.setObjectName("labelError")
+        font.setPointSize(12)
+        self.labelError.setFont(font)
         self.label = QtWidgets.QLabel(LogIn)
         self.label.setGeometry(QtCore.QRect(10, 10, 291, 491))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
@@ -92,20 +103,42 @@ class Ui_LogIn(object):
         self.lineEditUsername.editingFinished.connect(self.resetUsername)
         self.lineEditPassword.clicked.connect(self.passwordCLicked)
         self.lineEditPassword.editingFinished.connect(self.resetPassword)
-        self.pushButtonCreateAccount.mouseMoveEvent   
+        self.pushButtonCreateAccount.mouseMoveEvent
+        self.lineEditPassword.returnPressed.connect(self.logIn)
+        self.lineEditUsername.returnPressed.connect(self.logIn)
         
     def logIn(self):
-        mess = QtWidgets.QMessageBox()
-        mess.setWindowTitle("SUCCESS")
-        mess.setText("WELCOME")
-        mess.setWindowIcon(QtGui.QIcon("icon.png"))
-        mess.setIcon(QtWidgets.QMessageBox.Information)
-        mess.setStandardButtons(QtWidgets.QMessageBox.Ok)
-        mess.exec_()
-        
+        username = "ltan"
+        password = "1"
+        if self.emptyUsername:
+            pic = QtGui.QPixmap("errorIcon")
+            self.labelErrorIcon.setPixmap(pic)
+            self.labelError.setText("Please enter email.")
+        elif self.emptyPassword:
+            pic = QtGui.QPixmap("errorIcon")
+            self.labelErrorIcon.setPixmap(pic)
+            self.labelError.setText("Please enter password.") 
+        elif self.lineEditUsername.text() == username:
+            if self.lineEditPassword.text() == password:         
+                mess = QtWidgets.QMessageBox()
+                mess.setWindowTitle("SUCCESS")
+                mess.setText("WELCOME")
+                mess.setWindowIcon(QtGui.QIcon("icon.png"))
+                mess.setIcon(QtWidgets.QMessageBox.Information)
+                mess.setStandardButtons(QtWidgets.QMessageBox.Ok)
+                mess.exec_()
+            else:
+                self.emptyPassword = True
+                self.resetPassword()
+                pic = QtGui.QPixmap("errorIcon")
+                self.labelErrorIcon.setPixmap(pic)
+                self.labelError.setText("Incorrect password.")
+        else:
+            pic = QtGui.QPixmap("errorIcon")
+            self.labelErrorIcon.setPixmap(pic)
+            self.labelError.setText("Email does not exist.")
     def createAccount(self):
         self.Registration = QtWidgets.QWidget()
-        self.app = QtWidgets.QApplication(sys.argv)
         self.ui = Ui_Registration()
         self.ui.setupUi(self.Registration)
         self.Registration.show()
@@ -135,6 +168,7 @@ class Ui_LogIn(object):
             self.lineEditPassword.setEchoMode(QtWidgets.QLineEdit.Normal)
             self.lineEditPassword.setStyleSheet("color: gray;")
             self.lineEditPassword.setText("Password")
+            self.lineEditPassword.setCursorPosition(0)
             
     def usernameClicked(self):
         if self.lineEditUsername.text() == "someone@mymail.mapua.edu.ph":

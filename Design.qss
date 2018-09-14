@@ -1,6 +1,6 @@
 QWidget#LogIn {
 	background-image: url(LogInBackground.jpg);
-	background-position: center; 
+	background-position: center;
 }
 QWidget#Registration{
 	background-image: url(LogInBackground.jpg);
@@ -31,6 +31,10 @@ QLineEdit::hover{
 }
 QLabel#label{
 	color: #DAA520;
+	weight: 2px;
+}
+QLabel#labelError{
+	color: #FF0000;
 	weight: 2px;
 }
 QPushButton#pushButtonCreateAccount::hover{
