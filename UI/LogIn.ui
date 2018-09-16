@@ -84,7 +84,56 @@
     <string>CREATE ACCOUNT</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>291</width>
+     <height>491</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <family>Pristina</family>
+     <pointsize>36</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="lineWidth">
+    <number>1</number>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Welcome &lt;/p&gt;&lt;p&gt;to the&lt;/p&gt;&lt;p&gt;Student Council &lt;/p&gt;&lt;p&gt;Election&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEditUsername</tabstop>
+  <tabstop>lineEditPassword</tabstop>
+  <tabstop>pushButtonLogin</tabstop>
+  <tabstop>pushButtonCreateAccount</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
